@@ -10,3 +10,7 @@ void reduce_scatter()  {
 void allgather()  {
 
 }
+
+void allreduce()  {
+
+}
