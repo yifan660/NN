@@ -37,7 +37,13 @@ class grad():
 def init_processes():
 
 def.run():
-    model()
+    model = Net()
+    model = model
+    optimizer = optim.SGD(model.parameters(),lr=0.01,momentum=0.5)
+
+
+    for epoch in range(10):
+        for data, target in train_set:
 if __name__ == "__main__":
     size = 2
     processes = []
