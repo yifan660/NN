@@ -30,7 +30,7 @@ class Net(nn.Module):
         return F.log_softmax(x)
 
 
-class grad():
+class average_gradients():
     dist.all_reduce()
 
 
@@ -44,6 +44,17 @@ def.run():
 
     for epoch in range(10):
         for data, target in train_set:
+            data, target = Variable(data), Variable(target)
+            data, target = Variable(data.cuda(rank)), Variable(target.cuda(rank))
+            optimizer.zero_grad()
+            output = model(data)
+            loss = F.nll_loss(output, target)
+            epoch_loss += loss.item()
+            loss.backward()
+            average_gradients(model)
+            optimizer.step()
+
+
 if __name__ == "__main__":
     size = 2
     processes = []
